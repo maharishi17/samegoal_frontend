@@ -31,6 +31,14 @@ Routing:
 - `src/routes/__root.tsx` is the root layout: renders `<Outlet />` plus the TanStack devtools panel.
 - `autoCodeSplitting` is enabled in `vite.config.ts`, so routes are split automatically.
 
+## UI components
+
+- **shadcn/ui** is configured (`components.json`, style `radix-nova`, base color `neutral`, `rsc: false`). Generated components live in `src/components/ui/` (currently `button.tsx`, `dialog.tsx`); add more via the shadcn CLI rather than hand-writing them.
+- Primitives come from `radix-ui`, variants from `class-variance-authority`, icons from `lucide-react`.
+- Compose class names with the `cn()` helper in `src/lib/utils.ts` (`clsx` + `tailwind-merge`).
+- Aliases (per `components.json`): components → `@/components`, ui → `@/components/ui`, utils → `@/lib/utils`, hooks → `@/hooks`.
+- Note: `components.json` points `tailwind.config` at `tailwind.config.js`, but this project uses Tailwind v4's CSS-based config (no JS config file) — theming lives in `src/styles.css`.
+
 ## Conventions
 
 - **Path aliases**: import from `src/` via `#/*` or `@/*` (e.g. `import x from "#/router"`). Both map to `./src/*`.
